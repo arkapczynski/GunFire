@@ -18,7 +18,7 @@ public class BaseTest {
 
     public WebDriver initializeDriver() {
        // WebDriverManager.chromedriver().setup();
-        WebDriverManager.chromedriver().browserVersion("121.0.6167.161").setup();
+        WebDriverManager.chromedriver().browserVersion("125.0.6422.113").setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
@@ -32,7 +32,8 @@ public class BaseTest {
         driver = initializeDriver();
         driver.get("https://gunfire.com/pl/");
         mainPage = new MainPage(driver);
-        driver.findElement(By.xpath("//a[@href='#acceptSelected']")).click();
+        //driver.findElement(By.xpath("//a[@href='#acceptSelected']")).click();
+        driver.findElement(By.id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll")).click();
         return mainPage;
     }
 
