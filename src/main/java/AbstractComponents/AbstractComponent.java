@@ -244,6 +244,7 @@ public class AbstractComponent {
         driver.findElement(By.xpath("//a[@data-id=\"filter_producer\"]/span[@class=\"--show\"]")).click();
         List<WebElement> producersList = driver.findElements(By.xpath("//ul[@id=\"filter_producer_content\"]/li[contains(@class,\"filters__item\")]/div/label"));
         for (String manufacturer : manufacturers) {
+            System.out.println("Manufacturer: " + manufacturer);
             producersList.stream().filter(s -> s.getText().contains(manufacturer)).forEach(s -> s.click());
         }
     }
@@ -257,14 +258,17 @@ public class AbstractComponent {
     }
 
     public void applyFilters() {
+        System.out.println("Apply all choosen filters");
         driver.findElement(By.xpath("//button[@class=\"__buttons-submit\"]")).click();
     }
 
 
     public void applyChosenFilters(String[] manufacturers, String[] types) {
+        System.out.println("FILTRY");
         //zrobimy później więcej filtrów i będzie się matchowało na podstawie DataProvidera
         filterManufacturer(manufacturers);
-        filterElectricWeaponType(types);
+        System.out.println("Manufacturers wybrani");
+       // filterElectricWeaponType(types);
         applyFilters();
     }
 
