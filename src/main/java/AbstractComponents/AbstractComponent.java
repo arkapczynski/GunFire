@@ -66,6 +66,9 @@ public class AbstractComponent {
     @FindBy(id = "menu_search_text")
     WebElement searchBar;
 
+    @FindBy(xpath = "//a[@href='#acceptAll']")
+    WebElement cookiesAbroad;
+
 //    @FindBy(xpath = "//div[@class='prefixbox-autocomplete-product-container  ']")
 //    List <WebElement> suggestedSearchItems;
 //    @FindBy(xpath = "//*[contains(@class, 'prefixbox-group-container')]")
@@ -153,6 +156,9 @@ public class AbstractComponent {
         languagesButton.click();
         driver.findElement(By.xpath("//div[@class=\"open_language__options_wrapper\"]//a[@data-lang-id='"+language+"']")).click();
 //  available: pl/cz/es/en/fr/nl
+        if(language.equals("nl") || language.equals("en") || language.equals("cz") ||language.equals("fr")){
+           cookiesAbroad.click();
+        }
 
 
 
