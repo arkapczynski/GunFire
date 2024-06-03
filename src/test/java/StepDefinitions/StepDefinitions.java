@@ -47,7 +47,7 @@ public class StepDefinitions extends BaseTest {
     @Then ("One of most expensive products is {string}.")
     public void one_of_most_expenive_is(String weapon){
       ArrayList<String> mostExpensives= promotionPage.getFirst5();
-      Assert.assertTrue( mostExpensives.stream().anyMatch(s->s.contains(weapon)));
+      Assert.assertTrue(mostExpensives.stream().anyMatch(s->s.contains(weapon)));
      }
 
 

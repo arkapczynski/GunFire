@@ -15,6 +15,7 @@ import java.time.Duration;
 public class BaseTest {
     public WebDriver driver;
     public MainPage mainPage;
+    private static final Logger logger = LogManager.getLogger(SeleniumTest.class);
 
     public WebDriver initializeDriver() {
        // WebDriverManager.chromedriver().setup();
