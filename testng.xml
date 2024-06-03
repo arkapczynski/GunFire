@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/Marlena/IdeaProjects/GunFire">
+        <classes>
+            <class name="Testy.Tescik">
+                <methods>
+                    <include name="topExpensiveAtPromotion"/>
+                    <include name="checkPriceOfCM028InESInCZK"/>
+                    <include name="compareReplicas"/>
+                    <include name="topExpensiveCyma"/>
+                    <include name="topExpensiveElectric"/>
+                    <include name="printingCheapestProducersProducts"/>
+                    <include name="checkIfReplicaIsCheaperThan"/>
+                </methods>
+            </class>
+            <class name="Testy.elo">
+                <methods>
+                    <include name="dadas"/>
+                    <include name="dsdsad"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
