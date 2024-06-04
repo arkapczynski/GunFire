@@ -27,13 +27,12 @@ public class ComparePage extends AbstractComponent {
         differenceButton.click();
     }
     public void compareReplicas() {
-              for (WebElement difference : differences) {
-            System.out.println(difference.getText()+"\n");
+              for (WebElement difference : differences) {System.out.println(difference.getText()+"\n");
         }
     }
 
     public ArrayList<String> compareProductsBy(String comparisonParameter) {
-        ArrayList<String> checkIfUniqueValues= new ArrayList<String>();
+        ArrayList<String> checkIfUniqueValues= new ArrayList<>();
         for (WebElement difference : differences) {
             if (difference.getText().contains(comparisonParameter)) {
                 String[] differencesValues = difference.getText().split("\n");
@@ -45,8 +44,5 @@ public class ComparePage extends AbstractComponent {
         System.out.println(checkIfUniqueValues);
         return checkIfUniqueValues;
     }
-
-
-
 }
 

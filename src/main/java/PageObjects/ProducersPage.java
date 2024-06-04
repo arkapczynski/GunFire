@@ -3,6 +3,7 @@ package PageObjects;
 import AbstractComponents.AbstractComponent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class ProducersPage extends AbstractComponent {
@@ -17,6 +18,7 @@ public class ProducersPage extends AbstractComponent {
 
     public void chooseProducer(String producerName){
         driver.findElement(By.xpath("//a[@title='"+producerName+"']")).click();
+        // to trzeba dodać do pagefactory
     }
 
     public void cheapestProductsOfProducer(String producerName) throws InterruptedException {

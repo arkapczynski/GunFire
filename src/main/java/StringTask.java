@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class Stringigigi {
+public class StringTask {
     public static void main(String[] args) {
 
         //Zadanie polegało na przerobienie stringa tak, aby słowa były posortowane wielkością liter, a jeżeli mają tyle samo liter to muszą być posortowane alfabetycznie.

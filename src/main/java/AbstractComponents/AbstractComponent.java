@@ -1,6 +1,8 @@
 package AbstractComponents;
 
 import PageObjects.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,12 +13,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class AbstractComponent {
 
     WebDriver driver;
-
+    public static final Logger logger = LogManager.getLogger(MainPage.class);
     public AbstractComponent(WebDriver driver) {
         this.driver=driver;
         PageFactory.initElements(driver, this);
@@ -69,6 +72,9 @@ public class AbstractComponent {
     @FindBy(xpath = "//a[@href='#acceptAll']")
     WebElement cookiesAbroad;
 
+    @FindBy(xpath = "//button[@class='__buttons-submit']")
+    WebElement applyFilters;
+
 //    @FindBy(xpath = "//div[@class='prefixbox-autocomplete-product-container  ']")
 //    List <WebElement> suggestedSearchItems;
 //    @FindBy(xpath = "//*[contains(@class, 'prefixbox-group-container')]")
@@ -85,61 +91,52 @@ public class AbstractComponent {
 
     public ReplicasPage goToReplicas(){
        replicasButton.click();
-        ReplicasPage replicas= new ReplicasPage(driver);
+        ReplicasPage replicas= new ReplicasPage(driver); //przykład jak nie powinno zostać. Poniżej już są poprawne deklaracje.
         return replicas;
     }
 
     public PartsAndAccessoriesPage goToPartsAndAccessories(){
         partsAndAccessoriesButton.click();
-        PartsAndAccessoriesPage partsAndAccessoriesPage= new PartsAndAccessoriesPage(driver);
-        return partsAndAccessoriesPage;
+        return new PartsAndAccessoriesPage(driver);
     }
 
     public TacticalGearPage goToTacticalGear(){
         tacticalGearButton.click();
-        TacticalGearPage tacticalGear= new TacticalGearPage(driver);
-        return tacticalGear;
+        return new TacticalGearPage(driver);
     }
 
     public ServicePage goToService(){
         serviceButton.click();
-        ServicePage service=new ServicePage(driver);
-        return service;
+        return new ServicePage(driver);
     }
 
     public ProducersPage goToProducers(){
         producersButton.click();
-        ProducersPage manufacturersPage= new ProducersPage(driver);
-        return manufacturersPage;
+        return new ProducersPage(driver);
     }
 
     public NewsPage goToNews(){
         newsButton.click();
-        NewsPage newsPage= new NewsPage(driver);
-        return newsPage;
+        return new NewsPage(driver);
     }
 
     public OutletPage goToOutlet(){
        outletButton.click();
-        OutletPage outletPage= new OutletPage(driver);
-        return outletPage;
+        return new OutletPage(driver);
     }
     public PromotionPage goToPromotions(){
        promotionsButton.click();
-        PromotionPage promotionPage= new PromotionPage(driver);
-        return promotionPage;
+        return new PromotionPage(driver);
     }
 
     public CartPage goToCart(){
         cartButton.click();
-        CartPage cartPage= new CartPage(driver);
-        return cartPage;
+        return new CartPage(driver);
     }
 
     public ComparePage goToComparePage(){
         compareButton.click();
-        ComparePage comparePage=new ComparePage(driver);
-        return comparePage;
+        return new ComparePage(driver);
     }
 
 
@@ -184,17 +181,11 @@ public class AbstractComponent {
     public void sortBy(String sortType) {
 
        sortButton.click();
-        if(sortType.equals("pricedown")) {
-            priceDownButton.click();
-        }
-        else if(sortType.equals("priceup")){
-           priceUpButton.click();
-        }
-        else if(sortType.equals("datedown")){
-           dateDownButton.click();
-        }
-        else if(sortType.equals("dateup")){
-            dateUpButton.click();
+        switch (sortType) {
+            case "pricedown" -> priceDownButton.click();
+            case "priceup" -> priceUpButton.click();
+            case "datedown" -> dateDownButton.click();
+            case "dateup" -> dateUpButton.click();
         }
     }
 
@@ -214,6 +205,7 @@ public class AbstractComponent {
         for (int i = 0; i < 5; i++) {
             productNames.add(first5.get(i).getText());
         }
+        logger.debug("Product names: " + productNames);
         //System.out.println(productNames[i]);
         return productNames;
     }
@@ -243,9 +235,11 @@ public class AbstractComponent {
     public void filterManufacturer(String[] manufacturers) { //da się loopa zrobić żeby można było podać kilku manufactorów
         driver.findElement(By.xpath("//a[@data-id=\"filter_producer\"]/span[@class=\"--show\"]")).click();
         List<WebElement> producersList = driver.findElements(By.xpath("//ul[@id=\"filter_producer_content\"]/li[contains(@class,\"filters__item\")]/div/label"));
+        System.out.println("Manufacturers " + Arrays.stream(manufacturers).toList());
         for (String manufacturer : manufacturers) {
             System.out.println("Manufacturer: " + manufacturer);
-            producersList.stream().filter(s -> s.getText().contains(manufacturer)).forEach(s -> s.click());
+            producersList.stream().filter(s -> s.getText().contains(manufacturer)).forEach(s -> s.click()); //poniżej też jest stream i..
+            //można go rozwiązać w taki sposób jak poniżej
         }
     }
 
@@ -253,21 +247,20 @@ public class AbstractComponent {
         List<WebElement> weaponType = driver.findElements(By.xpath("//ul[@id=\"filter_traits6471_content\"]/li/div/label/span[@class=\"--name\"]"));
         for (String type : types) {
 
-            weaponType.stream().filter(s -> s.getText().equalsIgnoreCase(type)).forEach(s -> s.click());
+            weaponType.stream().filter(s -> s.getText().equalsIgnoreCase(type)).forEach(WebElement::click);
         }
     }
 
     public void applyFilters() {
         System.out.println("Apply all choosen filters");
-        driver.findElement(By.xpath("//button[@class=\"__buttons-submit\"]")).click();
+        applyFilters.click();
     }
 
 
     public void applyChosenFilters(String[] manufacturers, String[] types) {
-        System.out.println("FILTRY");
         //zrobimy później więcej filtrów i będzie się matchowało na podstawie DataProvidera
         filterManufacturer(manufacturers);
-        System.out.println("Manufacturers wybrani");
+        logger.debug("Manufacturers has been chosen");
        // filterElectricWeaponType(types);
         applyFilters();
     }

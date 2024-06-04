@@ -9,13 +9,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import java.time.Duration;
 
 public class BaseTest {
     public WebDriver driver;
     public MainPage mainPage;
-    private static final Logger logger = LogManager.getLogger(SeleniumTest.class);
+    public static final Logger logger = LogManager.getLogger(BaseTest.class);
 
     public WebDriver initializeDriver() {
        // WebDriverManager.chromedriver().setup();
@@ -30,6 +31,7 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public MainPage launchGunfirePage() {
+        logger.info("Test starts");
         driver = initializeDriver();
         driver.get("https://gunfire.com/pl/");
         mainPage = new MainPage(driver);
@@ -40,6 +42,7 @@ public class BaseTest {
 
     @AfterMethod
     public void closeDriver() throws InterruptedException {
+        logger.info("Test ends");
         Thread.sleep(3000);
         driver.quit();
     }

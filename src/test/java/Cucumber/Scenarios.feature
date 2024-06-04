@@ -4,7 +4,7 @@ Feature: Sorting in different pages.
     Given Customer lands on Main Page
 
 @mostExpensiveProductOfProducerPromotion
-  Scenario Outline: Check the most expensive product of a manufacturer.
+  Scenario Outline: Check the most expensive product of a manufacturer on promotion.
     Given Customer clicks Promotion Button
     When Customer choose weapon types <weaponTypes> and manufacturers <manufacturers> then confirm filters
     Then 5 most expensive products print in output.
@@ -12,7 +12,7 @@ Feature: Sorting in different pages.
 
     Examples:
       | weaponTypes                          | manufacturers       |
-      | Karabiny/Karabinki,Karabiny wyborowe | ARES, LCT, CYMA, Bolle|
+      | Karabiny/Karabinki,Karabiny wyborowe | ARES,LCT,CYMA,Bolle|
 
   @theCheapestProductOfProducer
   Scenario Outline: Check cheapest product of a manufacturer.
@@ -76,6 +76,7 @@ Examples:
     When Customer search for product <searchProduct> and click it.
     Then Price is in currency <currency>
     And Add to cart button is in <language>
+  #check, ze jest tansze niz x PLN
 
     Examples:
       | searchProduct  | Price  |

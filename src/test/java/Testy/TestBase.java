@@ -4,20 +4,16 @@ import PageObjects.*;
 import TestComponents.BaseTest;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-
-public class Tescik extends BaseTest {
+public class TestBase extends BaseTest {
 
 
     @Test
     public void topExpensiveAtPromotion() {
-
         String[] weaponTypes = new String[]{"Karabiny/Karabinki", "Karabiny wyborowe"};
         String[] manufacturers = new String[]{"ARES", "LCT", "CYMA", "Bolle"};
         PromotionPage promotionPage = mainPage.goToPromotionsBottomButton();
         promotionPage.applyChosenFilters(manufacturers, weaponTypes);
         promotionPage.printTopExpensive();
-
     }
 
     @Test
@@ -45,7 +41,6 @@ public class Tescik extends BaseTest {
         ComparePage comparePage = mainPage.goToComparePage();
         comparePage.clickOnDifferencesButton();
         comparePage.compareProductsBy("Kod produktu");
-
     }
 
     @Test
