@@ -12,8 +12,8 @@ public class TestBase extends BaseTest {
         String[] weaponTypes = new String[]{"Karabiny/Karabinki", "Karabiny wyborowe"};
         String[] manufacturers = new String[]{"ARES", "LCT", "CYMA", "Bolle"};
         PromotionPage promotionPage = mainPage.goToPromotionsBottomButton();
-        promotionPage.applyChosenFilters(manufacturers, weaponTypes);
-        promotionPage.printTopExpensive();
+        promotionPage.applyChosenFilters(manufacturers, weaponTypes, null);
+        promotionPage.printTopExpensive(5);
     }
 
     @Test
@@ -40,7 +40,6 @@ public class TestBase extends BaseTest {
 
         ComparePage comparePage = mainPage.goToComparePage();
         comparePage.clickOnDifferencesButton();
-        comparePage.compareProductsBy("Kod produktu");
     }
 
     @Test
@@ -49,7 +48,7 @@ public class TestBase extends BaseTest {
         String[] manufacturers = new String[]{"CYMA"};
         ReplicasPage replicasPage = mainPage.goToReplicas();
         replicasPage.applyChosenFilters(manufacturers, weaponTypes);
-        replicasPage.printTopExpensive();
+        replicasPage.printTopExpensive(5);
     }
 
     @Test
@@ -58,7 +57,7 @@ public class TestBase extends BaseTest {
         ReplicasPage replicasPage = mainPage.goToReplicas();
         replicasPage.filterElectricWeaponType(weaponTypes);
         replicasPage.applyFilters();
-        replicasPage.printTopExpensive();
+        replicasPage.printTopExpensive(5);
     }
 
     @Test

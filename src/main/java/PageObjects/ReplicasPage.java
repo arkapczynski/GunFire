@@ -19,7 +19,7 @@ public class ReplicasPage extends AbstractComponent {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath ="//a[@data-id='filter_producer']/span[@class='--show']")
+    @FindBy(xpath = "//a[@data-id='filter_producer']/span[@class='--show']")
     WebElement showProducersButton;
 
     @FindBy(xpath = "//ul[@id='filter_producer_content']/li[contains(@class,'filters__item')]/div/label")
@@ -49,9 +49,9 @@ public class ReplicasPage extends AbstractComponent {
     }
 
 
-    public void applyChosenFilters(String[] manufacturers, String[] types) {
+    public void applyChosenFilters(String[] manufacturers, String[] weaponTypes) {
         //zrobimy później więcej filtrów i będzie się matchowało na podstawie DataProvidera
-           filterElectricWeaponType(types);
+           filterElectricWeaponType(weaponTypes);
             filterManufacturer(manufacturers);
         applyFilters();
     }

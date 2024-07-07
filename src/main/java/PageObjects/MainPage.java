@@ -24,6 +24,7 @@ public class MainPage extends AbstractComponent {
     }
 
     public PromotionPage goToPromotionsBottomButton(){
+        logger.debug("Go to promotions");
         promotionsBottomButton.click();
         return promotionSearch=new PromotionPage(driver);
     }
