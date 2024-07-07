@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/Marlena/IdeaProjects/GunFire">
         <classes>
-            <class name="Testy.Tescik">
+            <class name="Testy.TestBase">
                 <methods>
                     <include name="topExpensiveAtPromotion"/>
                     <include name="checkPriceOfCM028InESInCZK"/>
@@ -14,7 +14,7 @@
                     <include name="checkIfReplicaIsCheaperThan"/>
                 </methods>
             </class>
-            <class name="Testy.elo">
+            <class name="Testy.Test1">
                 <methods>
                     <include name="dadas"/>
                     <include name="dsdsad"/>

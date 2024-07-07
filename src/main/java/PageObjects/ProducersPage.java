@@ -19,9 +19,9 @@ public class ProducersPage extends AbstractComponent {
         driver.findElement(By.xpath("//a[@title='"+producerName+"']")).click();
     }
 
-    public void cheapestProductsOfProducer(String producerName) throws InterruptedException {
+    public void cheapestProductsOfProducer(String producerName) {
         chooseProducer(producerName);
         sortBy("priceup");
-        printFirst5();
+        printFirstElements(5);
     }
 }
