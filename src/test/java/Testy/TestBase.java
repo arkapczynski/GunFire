@@ -30,7 +30,6 @@ public class TestBase extends BaseTest {
     public void compareReplicas() {
         String firstReplica = "LCK-12";
         String secondReplica = "CM032";
-        String thirdReplica = "CM028";
 
         ProductPage productPage = mainPage.searchExactProduct(firstReplica);
         productPage.addProductForComparison();
@@ -61,7 +60,7 @@ public class TestBase extends BaseTest {
     }
 
     @Test
-    public void printingCheapestProducersProducts() throws InterruptedException {
+    public void printingCheapestProducersProducts() {
         String producer = "CYMA";
         ProducersPage producersPage = mainPage.goToProducers();
         producersPage.cheapestProductsOfProducer(producer);
@@ -70,7 +69,7 @@ public class TestBase extends BaseTest {
     @Test
     public void checkIfReplicaIsCheaperThan() {
         ProductPage productPage = mainPage.searchExactProduct("LCK-12");
-        Double actualPrice = productPage.parseProductPriceFromString();
+        double actualPrice = productPage.parseProductPriceFromString();
         if (actualPrice > 2000) {
             System.out.println("Waaaait, wait....");
         } else {
